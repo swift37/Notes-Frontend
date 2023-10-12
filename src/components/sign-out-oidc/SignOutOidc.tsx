@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { signOutRedirectCallback } from '../../services/auth-service'
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 
-const SignOutOidc = () => {
+const SignOutOidc: FC<{}> = () => {
 	const navigate = useNavigate()
 	useEffect(() => {
 		const signOutAsync = async () => {

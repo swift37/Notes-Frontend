@@ -11,6 +11,7 @@ const SignInOidc: FC<{}> = () => {
 		}
 		signInAsync()
 	}, [navigate])
+
 	return <div>Redirecting...</div>
 }
 

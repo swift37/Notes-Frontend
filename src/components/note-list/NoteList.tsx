@@ -28,7 +28,7 @@ const NoteList: FC<{}> = () => {
 			}
 			createNote(note)
 			event.currentTarget.value = ''
-			getNotes()
+			setTimeout(getNotes, 500)
 		}
 	}
 

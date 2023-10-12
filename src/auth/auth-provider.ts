@@ -16,7 +16,7 @@ const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
 		userManager.current = manager
 		const onUserLoaded = (user: User) => {
 			setAuthHeader(user.access_token)
-			console.log(`User loaded: ${user}`)
+			console.log(`User loaded: ${user.profile.name}`)
 		}
 		const onUserUnloaded = () => {
 			setAuthHeader(null)

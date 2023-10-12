@@ -12,9 +12,9 @@ const userManagerSettings: UserManagerSettings = {
 
 const userManager = new UserManager(userManagerSettings)
 
-export async function loadUser() {
+export const loadUser = async () => {
 	const user = await userManager.getUser()
-	console.log(`User: ${user}`)
+	console.log(`User: ${user?.profile.name}`)
 	const token = user?.access_token
 	setAuthHeader(token)
 }
