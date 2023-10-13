@@ -50,6 +50,14 @@ const NoteList: FC<{}> = () => {
 					<p>October 12, 2023</p>
 					<div className={styles.options}>
 						<i className='uil uil-ellipsis-h'></i>
+						<div className={styles.menu}>
+							<div className={styles.menuItem}>
+								<i className='uil uil-pen'></i>Edit
+							</div>
+							<div className={styles.menuItem}>
+								<i className='uil uil-trash'></i>Remove
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

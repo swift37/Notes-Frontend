@@ -18,8 +18,6 @@ const App: FC<{}> = () => {
 
 	return (
 		<>
-			<button onClick={signInRedirect}>Login</button>
-			<button onClick={signOut}>Logout</button>
 			<AuthProvider userManager={userManager}>
 				<Router />
 			</AuthProvider>

@@ -22,11 +22,5 @@
 }
 
 body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 3em;
-	min-width: 320px;
-	min-height: 100vh;
+	height: 100vh;
 }
