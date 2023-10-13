@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import { Client, CreateNoteDTO, NoteLookupDTO } from '../../api/api'
+import styles from './NoteList.module.css'
 
 const apiClient = new Client('https://localhost:7053')
 
@@ -33,15 +34,24 @@ const NoteList: FC<{}> = () => {
 	}
 
 	return (
-		<div>
-			Notes
-			<div>
-				<input ref={textInput} onKeyPress={handleKeyPress} />
+		<div className={styles.wrapper}>
+			<div className={styles.newNote}>
+				<div className={styles.addIcon}>
+					<i className='uil uil-plus'></i>
+				</div>
+				<p>Add a new note</p>
 			</div>
-			<div>
-				{notes?.map(note => (
-					<div key={note.id}>{note.title}</div>
-				))}
+			<div className={styles.note}>
+				<div className={styles.content}>
+					<h2>Title</h2>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+				</div>
+				<div className={styles.additionally}>
+					<p>October 12, 2023</p>
+					<div className={styles.options}>
+						<i className='uil uil-ellipsis-h'></i>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

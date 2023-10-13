@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import './App.css'
 import userManager, {
 	loadUser,
 	signInRedirect,
@@ -19,13 +18,11 @@ const App: FC<{}> = () => {
 
 	return (
 		<>
-			<header>
-				<button onClick={signInRedirect}>Login</button>
-				<button onClick={signOut}>Logout</button>
-				<AuthProvider userManager={userManager}>
-					<Router />
-				</AuthProvider>
-			</header>
+			<button onClick={signInRedirect}>Login</button>
+			<button onClick={signOut}>Logout</button>
+			<AuthProvider userManager={userManager}>
+				<Router />
+			</AuthProvider>
 		</>
 	)
 }
