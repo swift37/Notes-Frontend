@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import { Client, CreateNoteDTO, NoteLookupDTO } from '../../api/api'
+import CreateNoteModal from '../create-note-modal/CreateNoteModal'
 import styles from './NoteList.module.css'
 
 const apiClient = new Client('https://localhost:7053')
@@ -39,7 +40,7 @@ const NoteList: FC<{}> = () => {
 				<div className={styles.addIcon}>
 					<i className='uil uil-plus'></i>
 				</div>
-				<p>Add a new note</p>
+				<p>Create a new note</p>
 			</div>
 			<div className={styles.note}>
 				<div className={styles.content}>
