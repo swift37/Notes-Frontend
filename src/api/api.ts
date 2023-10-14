@@ -100,14 +100,16 @@ export class Client extends ClientBase {
 	 * @return Success
 	 */
 	create(
+		body: CreateNoteDTO,
 		version: string,
-		body: CreateNoteDTO | undefined,
 		cancelToken?: CancelToken | undefined
 	): Promise<string> {
 		let url_ = this.baseUrl + '/api/{version}/Note'
 		if (version === undefined || version === null)
 			throw new Error("The parameter 'version' must be defined.")
 		url_ = url_.replace('{version}', encodeURIComponent('' + version))
+		if (body === undefined || body === null)
+			throw new Error("The parameter 'body' must be defined.")
 		url_ = url_.replace(/[?&]$/, '')
 
 		const content_ = JSON.stringify(body)
@@ -179,14 +181,16 @@ export class Client extends ClientBase {
 	 * @return No Content
 	 */
 	update(
+		body: UpdateNoteDTO,
 		version: string,
-		body: UpdateNoteDTO | undefined,
 		cancelToken?: CancelToken | undefined
 	): Promise<void> {
 		let url_ = this.baseUrl + '/api/{version}/Note'
 		if (version === undefined || version === null)
 			throw new Error("The parameter 'version' must be defined.")
 		url_ = url_.replace('{version}', encodeURIComponent('' + version))
+		if (body === undefined || body === null)
+			throw new Error("The parameter 'body' must be defined.")
 		url_ = url_.replace(/[?&]$/, '')
 
 		const content_ = JSON.stringify(body)

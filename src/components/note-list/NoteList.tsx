@@ -1,29 +1,29 @@
-import { FC } from 'react'
-import { Client } from '../../api/api'
+import { FC, useState } from 'react'
+import { NotesService } from '../../services/notes-service'
 import styles from './NoteList.module.css'
 import { useQuery } from '@tanstack/react-query'
 import Note from './note/Note'
-
-const apiClient = new Client('https://localhost:7053')
+import NewNote from './new-note/NewNote'
+import CreateNoteModal from '../create-note-modal/CreateNoteModal'
 
 const NoteList: FC<{}> = () => {
 	const { data } = useQuery(
-		['notesList'],
-		async () => await apiClient.getAll('1.0')
+		['notes list'],
+		async () => await NotesService.getAll()
 	)
 
+	const [modal, setModal] = useState(false)
+
 	return (
-		<div className={styles.wrapper}>
-			<div className={styles.newNote}>
-				<div className={styles.addIcon}>
-					<i className='uil uil-plus'></i>
-				</div>
-				<p>Create a new note</p>
+		<>
+			{modal && <CreateNoteModal setModal={setModal} />}
+			<div className={styles.wrapper}>
+				<NewNote setModal={setModal} />
+				{data?.notes?.map(note => (
+					<Note key={note.id} note={note} />
+				))}
 			</div>
-			{data?.notes?.map(note => (
-				<Note key={note.id} note={note} />
-			))}
-		</div>
+		</>
 	)
 }
 

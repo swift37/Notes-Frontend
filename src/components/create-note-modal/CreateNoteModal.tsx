@@ -1,8 +1,12 @@
 import { useForm } from 'react-hook-form'
 import styles from './CreateNoteModal.module.css'
 import { CreateNoteDTO } from '../../api/api'
+import { useCreateNote } from './useCreateNote'
+import { FC } from 'react'
 
-const CreateNoteModal = () => {
+const CreateNoteModal: FC<{
+	setModal: React.Dispatch<React.SetStateAction<boolean>>
+}> = ({ setModal }) => {
 	const {
 		register,
 		reset,
@@ -12,15 +16,17 @@ const CreateNoteModal = () => {
 		mode: 'onChange',
 	})
 
+	const createNote = useCreateNote(reset)
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.modal}>
 				<div className={styles.content}>
 					<header>
 						<h2>Create a new note</h2>
-						<i className='uil uil-times'></i>
+						<i className='uil uil-times' onClick={() => setModal(false)}></i>
 					</header>
-					<form action='#'>
+					<form onSubmit={handleSubmit(createNote)}>
 						<div className={styles.field}>
 							<label>Title</label>
 							<input
