@@ -1,29 +1,37 @@
-import { useForm } from 'react-hook-form'
-import styles from './CreateNoteModal.module.css'
-import { CreateNoteDTO } from '../../api/api'
-import { useCreateNote } from './useCreateNote'
 import { FC } from 'react'
+import { useForm } from 'react-hook-form'
+import { UpdateNoteDTO } from '../../../api/api'
+import { useUpdateNote } from './useUpdateNote'
+import styles from '../Modal.module.css'
 
-const CreateNoteModal: FC<{
+interface IUpdateNoteModal {
+	note: UpdateNoteDTO
 	setModal: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ setModal }) => {
+}
+
+const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setModal }) => {
 	const {
 		register,
 		reset,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<CreateNoteDTO>({
+	} = useForm<UpdateNoteDTO>({
 		mode: 'onChange',
+		defaultValues: {
+			id: note.id,
+			title: note.title,
+			details: note.details,
+		},
 	})
 
-	const createNote = useCreateNote(reset)
+	const createNote = useUpdateNote(reset)
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.modal}>
 				<div className={styles.content}>
 					<header>
-						<h2>Create a new note</h2>
+						<h2>Updating a note</h2>
 						<i className='uil uil-times' onClick={() => setModal(false)}></i>
 					</header>
 					<form onSubmit={handleSubmit(createNote)}>
@@ -42,7 +50,7 @@ const CreateNoteModal: FC<{
 								placeholder='Enter details'
 							/>
 						</div>
-						<button>Create Note</button>
+						<button>Update Note</button>
 					</form>
 				</div>
 			</div>
@@ -50,4 +58,4 @@ const CreateNoteModal: FC<{
 	)
 }
 
-export default CreateNoteModal
+export default UpdateNoteModal
