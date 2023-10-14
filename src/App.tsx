@@ -6,6 +6,7 @@ import userManager, {
 } from './services/auth-service'
 import AuthProvider from './auth/auth-provider'
 import Router from './components/Router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const App: FC<{}> = () => {
 	loadUser()
@@ -16,11 +17,16 @@ const App: FC<{}> = () => {
 		signOutRedirect({ id_token_hint: idTokenHint })
 	}
 
+	const queryClient = new QueryClient()
+
 	return (
 		<>
-			<AuthProvider userManager={userManager}>
-				<Router />
-			</AuthProvider>
+			<button onClick={signInRedirect}>Login</button>
+			<QueryClientProvider client={queryClient}>
+				<AuthProvider userManager={userManager}>
+					<Router />
+				</AuthProvider>
+			</QueryClientProvider>
 		</>
 	)
 }

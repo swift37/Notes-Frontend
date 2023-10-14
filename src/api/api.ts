@@ -425,6 +425,8 @@ export interface NoteListVM {
 export interface NoteLookupDTO {
 	id?: string
 	title?: string | undefined
+	details?: string | undefined
+	creationDate?: Date
 }
 
 export interface ProblemDetails {
@@ -446,14 +448,14 @@ export interface UpdateNoteDTO {
 export class ApiException extends Error {
 	message: string
 	status: number
-	response: string
+	response: AxiosResponse
 	headers: { [key: string]: any }
 	result: any
 
 	constructor(
 		message: string,
 		status: number,
-		response: string,
+		response: AxiosResponse,
 		headers: { [key: string]: any },
 		result: any
 	) {
@@ -476,7 +478,7 @@ export class ApiException extends Error {
 function throwException(
 	message: string,
 	status: number,
-	response: string,
+	response: AxiosResponse,
 	headers: { [key: string]: any },
 	result?: any
 ): any {

@@ -1,8 +1,9 @@
 .wrapper {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 2em;
-	margin: 3em;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 290px);
+	row-gap: 2.5em;
+	justify-content: space-evenly;
+	padding: 3em;
 }
 
 .note,

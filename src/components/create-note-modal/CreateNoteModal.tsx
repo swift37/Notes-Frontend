@@ -1,6 +1,17 @@
+import { useForm } from 'react-hook-form'
 import styles from './CreateNoteModal.module.css'
+import { CreateNoteDTO } from '../../api/api'
 
 const CreateNoteModal = () => {
+	const {
+		register,
+		reset,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<CreateNoteDTO>({
+		mode: 'onChange',
+	})
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.modal}>
@@ -12,11 +23,18 @@ const CreateNoteModal = () => {
 					<form action='#'>
 						<div className={styles.field}>
 							<label>Title</label>
-							<input type='text' placeholder='Enter title' />
+							<input
+								type='text'
+								{...register('title', { required: true })}
+								placeholder='Enter title'
+							/>
 						</div>
 						<div className={styles.field}>
-							<label>Description</label>
-							<textarea placeholder='Enter description' />
+							<label>Details</label>
+							<textarea
+								{...register('details', { required: true })}
+								placeholder='Enter details'
+							/>
 						</div>
 						<button>Create Note</button>
 					</form>
