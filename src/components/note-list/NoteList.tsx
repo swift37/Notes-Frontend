@@ -16,7 +16,7 @@ const NoteList: FC<{}> = () => {
 
 	return (
 		<>
-			{createNoteModal && <CreateNoteModal setModal={setCreateNoteModal} />}
+			{createNoteModal && <CreateNoteModal setOpenModal={setCreateNoteModal} />}
 			<div className={styles.wrapper}>
 				<NewNote setModal={setCreateNoteModal} />
 				{data?.notes?.map(note => (

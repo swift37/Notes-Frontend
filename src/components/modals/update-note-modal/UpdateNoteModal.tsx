@@ -6,16 +6,11 @@ import styles from '../Modal.module.css'
 
 interface IUpdateNoteModal {
 	note: UpdateNoteDTO
-	setModal: React.Dispatch<React.SetStateAction<boolean>>
+	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setModal }) => {
-	const {
-		register,
-		reset,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<UpdateNoteDTO>({
+const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setOpenModal }) => {
+	const { register, handleSubmit } = useForm<UpdateNoteDTO>({
 		mode: 'onChange',
 		defaultValues: {
 			id: note.id,
@@ -24,7 +19,7 @@ const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setModal }) => {
 		},
 	})
 
-	const createNote = useUpdateNote(reset)
+	const updateNote = useUpdateNote(setOpenModal)
 
 	return (
 		<div className={styles.container}>
@@ -32,9 +27,12 @@ const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setModal }) => {
 				<div className={styles.content}>
 					<header>
 						<h2>Updating a note</h2>
-						<i className='uil uil-times' onClick={() => setModal(false)}></i>
+						<i
+							className='uil uil-times'
+							onClick={() => setOpenModal(false)}
+						></i>
 					</header>
-					<form onSubmit={handleSubmit(createNote)}>
+					<form onSubmit={handleSubmit(updateNote)}>
 						<div className={styles.field}>
 							<label>Title</label>
 							<input

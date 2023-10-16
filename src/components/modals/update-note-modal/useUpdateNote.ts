@@ -1,9 +1,11 @@
-import { SubmitHandler, UseFormReset } from 'react-hook-form'
+import { SubmitHandler } from 'react-hook-form'
 import { UpdateNoteDTO } from '../../../api/api'
 import { NotesService } from '../../../services/notes-service'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-export const useUpdateNote = (reset: UseFormReset<UpdateNoteDTO>) => {
+export const useUpdateNote = (
+	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+) => {
 	const queryClient = useQueryClient()
 
 	const { mutate } = useMutation(
@@ -12,7 +14,7 @@ export const useUpdateNote = (reset: UseFormReset<UpdateNoteDTO>) => {
 		{
 			onSuccess() {
 				queryClient.invalidateQueries(['notes list'])
-				reset()
+				setOpenModal(false)
 			},
 		}
 	)

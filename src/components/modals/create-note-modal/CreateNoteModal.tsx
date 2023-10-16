@@ -5,8 +5,8 @@ import { useCreateNote } from './useCreateNote'
 import { FC } from 'react'
 
 const CreateNoteModal: FC<{
-	setModal: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ setModal }) => {
+	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+}> = ({ setOpenModal }) => {
 	const {
 		register,
 		reset,
@@ -24,7 +24,10 @@ const CreateNoteModal: FC<{
 				<div className={styles.content}>
 					<header>
 						<h2>Create a new note</h2>
-						<i className='uil uil-times' onClick={() => setModal(false)}></i>
+						<i
+							className='uil uil-times'
+							onClick={() => setOpenModal(false)}
+						></i>
 					</header>
 					<form onSubmit={handleSubmit(createNote)}>
 						<div className={styles.field}>
