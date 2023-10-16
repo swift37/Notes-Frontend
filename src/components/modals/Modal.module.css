@@ -97,3 +97,22 @@ button {
 button:hover {
 	background-color: #9271d7;
 }
+
+.buttonsSection {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5em;
+	margin-top: 1.5em;
+}
+
+.buttonsSection button {
+	width: 100px;
+}
+
+.buttonsSection button:first-child {
+	background-color: #ababab;
+}
+
+.buttonsSection button:first-child:hover {
+	background-color: #a3a3a3;
+}
