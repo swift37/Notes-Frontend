@@ -2,12 +2,13 @@ import { FC, useState } from 'react'
 import { NoteLookupDTO, UpdateNoteDTO } from '../../../api/api'
 import styles from '../NoteList.module.css'
 import UpdateNoteModal from '../../modals/update-note-modal/UpdateNoteModal'
+import DeleteNoteModal from '../../modals/delete-note-modal/DeleteNoteModal'
 
 const Note: FC<{ note: NoteLookupDTO }> = ({ note }) => {
 	const [updateNoteModal, setUpdateNoteModal] = useState(false)
-	const [updateNoteDTO, setUpdateNoteDTO] = useState<UpdateNoteDTO>({})
+	const [deleteNoteModal, setDeleteNoteModal] = useState(false)
 
-	const updateNoteDTO2: UpdateNoteDTO = {
+	const updateNoteDTO: UpdateNoteDTO = {
 		id: note.id,
 		title: note.title,
 		details: note.details,
@@ -17,9 +18,12 @@ const Note: FC<{ note: NoteLookupDTO }> = ({ note }) => {
 		<>
 			{updateNoteModal && (
 				<UpdateNoteModal
-					note={updateNoteDTO2}
+					note={updateNoteDTO}
 					setOpenModal={setUpdateNoteModal}
 				/>
+			)}
+			{deleteNoteModal && note?.id && (
+				<DeleteNoteModal id={note.id} setOpenModal={setDeleteNoteModal} />
 			)}
 			<div className={styles.note}>
 				<div className={styles.content}>
@@ -42,7 +46,10 @@ const Note: FC<{ note: NoteLookupDTO }> = ({ note }) => {
 								<i className='uil uil-pen'></i>
 								Edit
 							</div>
-							<div className={styles.menuItem}>
+							<div
+								className={styles.menuItem}
+								onClick={() => setDeleteNoteModal(true)}
+							>
 								<i className='uil uil-trash'></i>Remove
 							</div>
 						</div>

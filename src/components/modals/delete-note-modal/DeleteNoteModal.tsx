@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styles from '../Modal.module.css'
+import { useDeleteNote } from './useDeleteNote'
 
 interface IDeleteNoteModal {
 	id: string
@@ -7,21 +8,33 @@ interface IDeleteNoteModal {
 }
 
 const DeleteNoteModal: FC<IDeleteNoteModal> = ({ id, setOpenModal }) => {
+	const deleteNote = useDeleteNote(setOpenModal)
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.modal}>
 				<div className={styles.content}>
 					<header>
-						<h2>Deleting a note</h2>
+						<h2>Removing a note</h2>
 						<i
 							className='uil uil-times'
 							onClick={() => setOpenModal(false)}
 						></i>
 					</header>
-					<p>Do you confirm the deletion of this note?</p>
+					<p>Do you confirm the remove of this note?</p>
 					<div className={styles.buttonsSection}>
-						<button className={styles.cancelBtn}>Cancel</button>
-						<button className={styles.confirmBtn}>Confirm</button>
+						<button
+							className={styles.cancelBtn}
+							onClick={() => setOpenModal(false)}
+						>
+							Cancel
+						</button>
+						<button
+							className={styles.confirmBtn}
+							onClick={() => deleteNote(id)}
+						>
+							Confirm
+						</button>
 					</div>
 				</div>
 			</div>
