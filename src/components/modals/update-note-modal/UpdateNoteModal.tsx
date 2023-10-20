@@ -25,14 +25,14 @@ const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setOpenModal }) => {
 		<div className={styles.container}>
 			<div className={styles.modal}>
 				<div className={styles.content}>
-					<header>
+					<header className={styles.header}>
 						<h2>Updating a note</h2>
 						<i
 							className='uil uil-times'
 							onClick={() => setOpenModal(false)}
 						></i>
 					</header>
-					<form onSubmit={handleSubmit(updateNote)}>
+					<form className={styles.form} onSubmit={handleSubmit(updateNote)}>
 						<div className={styles.field}>
 							<label>Title</label>
 							<input
@@ -48,7 +48,7 @@ const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setOpenModal }) => {
 								placeholder='Enter details'
 							/>
 						</div>
-						<button>Update Note</button>
+						<button className={styles.button}>Update Note</button>
 					</form>
 				</div>
 			</div>

@@ -4,15 +4,12 @@ import { CreateNoteDTO } from '../../../api/api'
 import { useCreateNote } from './useCreateNote'
 import { FC } from 'react'
 
-const CreateNoteModal: FC<{
+interface ICreateNoteModal {
 	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ setOpenModal }) => {
-	const {
-		register,
-		reset,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<CreateNoteDTO>({
+}
+
+const CreateNoteModal: FC<ICreateNoteModal> = ({ setOpenModal }) => {
+	const { register, reset, handleSubmit } = useForm<CreateNoteDTO>({
 		mode: 'onChange',
 	})
 
@@ -22,14 +19,14 @@ const CreateNoteModal: FC<{
 		<div className={styles.container}>
 			<div className={styles.modal}>
 				<div className={styles.content}>
-					<header>
+					<header className={styles.header}>
 						<h2>Create a new note</h2>
 						<i
 							className='uil uil-times'
 							onClick={() => setOpenModal(false)}
 						></i>
 					</header>
-					<form onSubmit={handleSubmit(createNote)}>
+					<form className={styles.form} onSubmit={handleSubmit(createNote)}>
 						<div className={styles.field}>
 							<label>Title</label>
 							<input
@@ -45,7 +42,7 @@ const CreateNoteModal: FC<{
 								placeholder='Enter details'
 							/>
 						</div>
-						<button>Create Note</button>
+						<button className={styles.button}>Create Note</button>
 					</form>
 				</div>
 			</div>

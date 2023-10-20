@@ -1,9 +1,11 @@
 import { FC } from 'react'
 import styles from '../NoteList.module.css'
 
-const NewNote: FC<{
+interface INewNote {
 	setModal: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ setModal }) => {
+}
+
+const NewNote: FC<INewNote> = ({ setModal }) => {
 	return (
 		<div className={styles.newNote} onClick={() => setModal(true)}>
 			<div className={styles.addIcon}>

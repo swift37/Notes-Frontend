@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NoteList from './note-list/NoteList'
 import SignInOidc from './sign-in-oidc/SignInOidc'
 import SignOutOidc from './sign-out-oidc/SignOutOidc'
+import Home from './screens/home/Home'
 
 const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route element={<NoteList />} path='/' />
+				<Route element={<Home />} path='/' />
 				<Route element={<SignInOidc />} path='/signin-oidc' />
 				<Route element={<SignOutOidc />} path='/signout-oidc' />
 

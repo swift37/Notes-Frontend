@@ -14,7 +14,7 @@ const DeleteNoteModal: FC<IDeleteNoteModal> = ({ id, setOpenModal }) => {
 		<div className={styles.container}>
 			<div className={styles.modal}>
 				<div className={styles.content}>
-					<header>
+					<header className={styles.header}>
 						<h2>Removing a note</h2>
 						<i
 							className='uil uil-times'
@@ -24,13 +24,13 @@ const DeleteNoteModal: FC<IDeleteNoteModal> = ({ id, setOpenModal }) => {
 					<p>Do you confirm the remove of this note?</p>
 					<div className={styles.buttonsSection}>
 						<button
-							className={styles.cancelBtn}
+							className={`${styles.button} ${styles.cancelBtn}`}
 							onClick={() => setOpenModal(false)}
 						>
 							Cancel
 						</button>
 						<button
-							className={styles.confirmBtn}
+							className={`${styles.button} ${styles.confirmBtn}`}
 							onClick={() => deleteNote(id)}
 						>
 							Confirm

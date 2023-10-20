@@ -4,7 +4,11 @@ import styles from '../NoteList.module.css'
 import UpdateNoteModal from '../../modals/update-note-modal/UpdateNoteModal'
 import DeleteNoteModal from '../../modals/delete-note-modal/DeleteNoteModal'
 
-const Note: FC<{ note: NoteLookupDTO }> = ({ note }) => {
+interface INote {
+	note: NoteLookupDTO
+}
+
+const Note: FC<INote> = ({ note }) => {
 	const [updateNoteModal, setUpdateNoteModal] = useState(false)
 	const [deleteNoteModal, setDeleteNoteModal] = useState(false)
 

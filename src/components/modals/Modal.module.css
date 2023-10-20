@@ -25,7 +25,7 @@
 	padding: 20px 25px;
 }
 
-header {
+.header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -34,22 +34,22 @@ header {
 	border-bottom: 1px solid #ccc;
 }
 
-header i {
+.header i {
 	font-size: 24px;
 	cursor: pointer;
 	transition: color 0.3s ease;
 }
 
-header i:hover {
+.header i:hover {
 	color: #171717;
 }
 
-header h2 {
+.header h2 {
 	font-size: 24px;
 	font-weight: 500;
 }
 
-form {
+.form {
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
@@ -82,7 +82,7 @@ form {
 	resize: none;
 }
 
-button {
+.button {
 	padding: 10px 0;
 	background-color: #927ad7;
 	color: #fff;
@@ -94,7 +94,7 @@ button {
 	transition: background 0.3s ease;
 }
 
-button:hover {
+.button:hover {
 	background-color: #9271d7;
 }
 
