@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { UpdateNoteDTO } from '../../../api/api'
 import { useUpdateNote } from './useUpdateNote'
 import styles from '../Modal.module.css'
+import ErrorMsg from '../error-msg/ErrorMsg'
 
 interface IUpdateNoteModal {
 	note: UpdateNoteDTO
@@ -10,7 +11,11 @@ interface IUpdateNoteModal {
 }
 
 const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setOpenModal }) => {
-	const { register, handleSubmit } = useForm<UpdateNoteDTO>({
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<UpdateNoteDTO>({
 		mode: 'onChange',
 		defaultValues: {
 			id: note.id,
@@ -37,17 +42,30 @@ const UpdateNoteModal: FC<IUpdateNoteModal> = ({ note, setOpenModal }) => {
 							<label>Title</label>
 							<input
 								type='text'
-								{...register('title', { required: true })}
+								{...register('title', {
+									required: 'Title is required',
+									maxLength: {
+										value: 32,
+										message: 'Length mustn`t exceed 32 chars',
+									},
+								})}
 								placeholder='Enter title'
 							/>
 						</div>
+						<ErrorMsg message={errors?.title?.message} />
 						<div className={styles.field}>
 							<label>Details</label>
 							<textarea
-								{...register('details', { required: true })}
+								{...register('details', {
+									maxLength: {
+										value: 128,
+										message: 'Length mustn`t exceed 128 chars',
+									},
+								})}
 								placeholder='Enter details'
 							/>
 						</div>
+						<ErrorMsg message={errors?.details?.message} />
 						<button className={styles.button}>Update Note</button>
 					</form>
 				</div>
