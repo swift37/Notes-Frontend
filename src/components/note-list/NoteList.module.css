@@ -9,7 +9,8 @@
 .note,
 .newNote {
 	width: 290px;
-	height: 270px;
+	min-height: 270px;
+	height: auto;
 	background-color: #fff;
 	color: #474747;
 	border-radius: 20px;
@@ -58,7 +59,7 @@
 	font-size: 17px;
 	word-wrap: break-word;
 	color: #575757;
-	margin-top: 5px;
+	margin: 5px 0 10px 0;
 }
 
 .additionally {

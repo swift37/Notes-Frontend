@@ -3,16 +3,22 @@ import styles from '../Modal.module.css'
 import { CreateNoteDTO } from '../../../api/api'
 import { useCreateNote } from './useCreateNote'
 import { FC } from 'react'
+import ErrorMsg from '../error-msg/ErrorMsg'
 
 interface ICreateNoteModal {
 	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const CreateNoteModal: FC<ICreateNoteModal> = ({ setOpenModal }) => {
-	const { register, reset, handleSubmit } = useForm<CreateNoteDTO>({
+	const {
+		register,
+		reset,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<CreateNoteDTO>({
 		mode: 'onChange',
 	})
-
+	console.log(errors)
 	const createNote = useCreateNote(reset)
 
 	return (
@@ -31,17 +37,30 @@ const CreateNoteModal: FC<ICreateNoteModal> = ({ setOpenModal }) => {
 							<label>Title</label>
 							<input
 								type='text'
-								{...register('title', { required: true })}
+								{...register('title', {
+									required: 'Title is required',
+									maxLength: {
+										value: 32,
+										message: 'Length mustn`t exceed 32 chars',
+									},
+								})}
 								placeholder='Enter title'
 							/>
 						</div>
+						<ErrorMsg message={errors?.title?.message} />
 						<div className={styles.field}>
 							<label>Details</label>
 							<textarea
-								{...register('details', { required: true })}
+								{...register('details', {
+									maxLength: {
+										value: 128,
+										message: 'Length mustn`t exceed 128 chars',
+									},
+								})}
 								placeholder='Enter details'
 							/>
 						</div>
+						<ErrorMsg message={errors?.details?.message} />
 						<button className={styles.button}>Create Note</button>
 					</form>
 				</div>
